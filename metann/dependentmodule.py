@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import torch
 from torch.nn import Module
-from torch._six import string_classes
+from six import string_types
 
 from .utils import SubDict
 
@@ -82,7 +82,7 @@ class DependentModule(Module):
         if '_dependents' not in self.__dict__:
             raise AttributeError(
                 "cannot assign dependent parameter before MetaModule.__init__() or MetaModule._reinit() call")
-        elif not isinstance(name, torch._six.string_classes):
+        elif not isinstance(name, string_types):
             raise TypeError("dependent parameter name should be a string. "
                             "Got {}".format(torch.typename(name)))
         elif '.' in name:
